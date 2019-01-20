@@ -1,9 +1,9 @@
-package com.coffeebeans.search.binary;
+package com.coffeebeans.search.binary.iterative;
 
-public class LastOccurrenceIterativeBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {
+import com.coffeebeans.search.binary.BinarySearch;
 
-    @Override
-    public int search(T t, T[] values) {
+abstract class IterativeOccurrenceBinarySearch<T extends Comparable<T>>  implements BinarySearch<T> {
+    protected int searchIteratively(final T t, final T[] values, final boolean firstOccurrence){
         if (values == null || t == null) {
             return -1;
         }
@@ -16,7 +16,11 @@ public class LastOccurrenceIterativeBinarySearchImpl<T extends Comparable<T>> im
             int mid = start + (end - start) / 2; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
             if (t.compareTo(values[mid]) == 0) {
                 retval =  mid;
-                start = mid + 1;
+                if(firstOccurrence){
+                    end = mid - 1;
+                } else{
+                    start = mid + 1;
+                }
             } else if (t.compareTo(values[mid]) > 0) {
                 start = mid + 1;
             } else {

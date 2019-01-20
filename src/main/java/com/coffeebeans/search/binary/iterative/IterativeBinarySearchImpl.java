@@ -1,6 +1,8 @@
-package com.coffeebeans.search.binary;
+package com.coffeebeans.search.binary.iterative;
 
-public class IterativeBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {
+import com.coffeebeans.search.binary.BinarySearch;
+
+class IterativeBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {
 
     @Override
     public int search(T t, T[] values) {

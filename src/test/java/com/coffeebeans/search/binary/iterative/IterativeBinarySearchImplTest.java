@@ -1,4 +1,4 @@
-package com.coffeebeans.search.binary;
+package com.coffeebeans.search.binary.iterative;
 
 import org.junit.Before;
 import org.junit.Test;

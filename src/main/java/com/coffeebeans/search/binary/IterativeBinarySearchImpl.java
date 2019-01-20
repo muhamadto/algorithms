@@ -3,7 +3,7 @@ package com.coffeebeans.search.binary;
 public class IterativeBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {
 
     @Override
-    public long search(T t, T[] values) {
+    public int search(T t, T[] values) {
         if (values == null || t == null) {
             return -1;
         }

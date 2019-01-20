@@ -11,7 +11,7 @@ public class RecursiveBinarySearchImpl<T extends Comparable<T>> implements Binar
         return doSearch(t, values, 0, values.length - 1);
     }
 
-    private int doSearch(final T t,final T[] values, final int start, final int end) {
+    private int doSearch(final T t, final T[] values, final int start, final int end) {
         if (start > end) {
             return -1;
         }

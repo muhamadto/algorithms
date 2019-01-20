@@ -11,12 +11,13 @@ public class RecursiveBinarySearchImpl<T extends Comparable<T>> implements Binar
         return doSearch(t, values, 0, values.length - 1);
     }
 
-    private int doSearch(final T t,final T[] values, final int start, final int end) {
+    private int doSearch(final T t, final T[] values, final int start, final int end) {
         if (start > end) {
             return -1;
         }
 
-        int mid = start + (end - start) / 2; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
+        // Unsigned right shit, shifting to the right with zero.
+        int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
 
         if (t.compareTo(values[mid]) == 0) {
             return mid;

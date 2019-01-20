@@ -67,4 +67,18 @@ public class LastOccurrenceIterativeBinarySearchImplTest {
 
         assertEquals(7, lastOccurrenceIterativeBinarySearch.search(81, input));
     }
+
+    @Test
+    public void should_return_negative_one_when_size_is_odd_and_required_object_not_in_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(-1, lastOccurrenceIterativeBinarySearch.search(90, input));
+    }
+
+    @Test
+    public void should_return_negative_one_when_size_is_even_and_required_object_not_in_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 13, 13, 47, 63, 81, 97};
+
+        assertEquals(-1, lastOccurrenceIterativeBinarySearch.search(90, input));
+    }
 }

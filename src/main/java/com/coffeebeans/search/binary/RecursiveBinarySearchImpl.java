@@ -16,7 +16,8 @@ public class RecursiveBinarySearchImpl<T extends Comparable<T>> implements Binar
             return -1;
         }
 
-        int mid = start + (end - start) / 2; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
+        // Unsigned right shit, shifting to the right with zero.
+        int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
 
         if (t.compareTo(values[mid]) == 0) {
             return mid;

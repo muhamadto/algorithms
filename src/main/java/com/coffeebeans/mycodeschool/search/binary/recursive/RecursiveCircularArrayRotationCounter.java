@@ -252,6 +252,6 @@ class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
             return doFindRotationCount(values, start, mid - 1);
         }
 
-        return 0;
+       return -1; //invalid value
     }
 }

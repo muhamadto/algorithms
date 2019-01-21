@@ -211,7 +211,7 @@ package com.coffeebeans.mycodeschool.search.binary.iterative;
 class IterativeCircularArrayRotationCounter<T extends Comparable<T>> {
     int findRotationCount(final T[] values) {
         if (values == null) {
-            return 0;
+            return -1;
         }
 
         int arrayLength = values.length;
@@ -244,6 +244,6 @@ class IterativeCircularArrayRotationCounter<T extends Comparable<T>> {
                 end = mid - 1;
             }
         }
-        return 0;
+        return -1; //invalid value
     }
 }

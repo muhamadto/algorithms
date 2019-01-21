@@ -1,4 +1,3 @@
-
 /**
  *                                  Apache License
  *                            Version 2.0, January 2004
@@ -203,40 +202,78 @@
  *    limitations under the License.
  */
 
-package com.coffeebeans.search.binary.iterative;
+package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import com.coffeebeans.search.binary.BinarySearch;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author MohamedHamtou
  */
 
-class IterativeLastOccurrenceBinarySearchImpl<T extends Comparable <T>> implements BinarySearch <T> {
+public class RecursiveBinarySearchImplTest {
+    private RecursiveBinarySearchImpl recursiveBinarySearch;
 
-  @Override
-  public int search(T t, T[] values) {
-    if (values == null || t == null) {
-      return -1;
+    @Before
+    public void setup() {
+        recursiveBinarySearch = new RecursiveBinarySearchImpl();
     }
 
-    int retval = -1;
-    int start = 0;
-    int end = values.length - 1;
+    @Test
+    public void should_return_position_when_size_is_odd_and_required_object_at_middle_of_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81, 97};
 
-    while (start <= end) {
-      int mid = start + (end - start)
-          / 2; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
-      if (t.compareTo(values[mid]) == 0) {
-        retval = mid;
-
-        start = mid + 1;
-      } else if (t.compareTo(values[mid]) > 0) {
-        start = mid + 1;
-      } else {
-        end = mid - 1;
-      }
+        assertEquals(4, recursiveBinarySearch.search(36, input));
     }
 
-    return retval;
-  }
+    @Test
+    public void should_return_position_when_size_is_odd_and_required_object_less_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81, 97};
+
+        assertEquals(2, recursiveBinarySearch.search(13, input));
+    }
+
+    @Test
+    public void should_return_position_when_size_is_odd_and_required_object_larger_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81, 97};
+
+        assertEquals(8, recursiveBinarySearch.search(97, input));
+    }
+
+    @Test
+    public void should_return_position_when_size_is_even_and_required_object_at_middle_of_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(3, recursiveBinarySearch.search(21, input));
+    }
+
+    @Test
+    public void should_return_position_when_size_is_even_and_required_object_less_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(2, recursiveBinarySearch.search(13, input));
+    }
+
+    @Test
+    public void should_return_position_when_size_is_even_and_required_object_larger_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(7, recursiveBinarySearch.search(81, input));
+    }
+
+    @Test
+    public void should_return_negative_one_when_size_is_odd_and_required_object_not_in_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(-1, recursiveBinarySearch.search(90, input));
+    }
+
+    @Test
+    public void should_return_negative_one_when_size_is_even_and_required_object_not_in_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 13, 13, 47, 63, 81, 97};
+
+        assertEquals(-1, recursiveBinarySearch.search(90, input));
+    }
 }

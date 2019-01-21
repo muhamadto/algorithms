@@ -1,3 +1,4 @@
+
 /**
  *                                  Apache License
  *                            Version 2.0, January 2004
@@ -202,94 +203,39 @@
  *    limitations under the License.
  */
 
-package com.coffeebeans.search.binary.iterative;
+package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
+import com.coffeebeans.mycodeschool.search.binary.BinarySearch;
 
 /**
  * @author MohamedHamtou
  */
 
-public class IterativeOccurrencesCountImplTest {
-    private IterativeOccurrencesCountImpl iterativeOccurrencesCountImpl;
+class RecursiveBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {
 
-    @Before
-    public void setup() {
-        iterativeOccurrencesCountImpl = new IterativeOccurrencesCountImpl();
+    @Override
+    public int search(T t, T[] values) {
+        if (values == null || t == null) {
+            return -1;
+        }
+
+        return doSearch(t, values, 0, values.length - 1);
     }
 
-    @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(5, iterativeOccurrencesCountImpl.count(5, input));
-    }
+    private int doSearch(final T t, final T[] values, final int start, final int end) {
+        if (start > end) {
+            return -1;
+        }
 
-    @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_side_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(2, iterativeOccurrencesCountImpl.count(3, input));
-    }
+        // Unsigned right shit, shifting to the right with zero.
+        int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
 
-    @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_left_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(2, iterativeOccurrencesCountImpl.count(9, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_size_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(1, iterativeOccurrencesCountImpl.count(1, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_left_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(1, iterativeOccurrencesCountImpl.count(12, input));
-    }
-
-    @Test
-    public void should_return_negative_one_when_object_does_not_exist_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(0, iterativeOccurrencesCountImpl.count(6, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(5, iterativeOccurrencesCountImpl.count(5, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_side_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(2, iterativeOccurrencesCountImpl.count(3, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_left_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(2, iterativeOccurrencesCountImpl.count(9, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_size_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(1, iterativeOccurrencesCountImpl.count(1, input));
-    }
-
-    @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_left_in_odd_even_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(1, iterativeOccurrencesCountImpl.count(11, input));
-    }
-
-    @Test
-    public void should_return_negative_one_when_object_does_not_exist_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(0, iterativeOccurrencesCountImpl.count(6, input));
+        if (t.compareTo(values[mid]) == 0) {
+            return mid;
+        } else if (t.compareTo(values[mid]) > 0) {
+            return doSearch(t, values, mid + 1, end);
+        } else {
+            return doSearch(t, values, start, mid - 1);
+        }
     }
 }

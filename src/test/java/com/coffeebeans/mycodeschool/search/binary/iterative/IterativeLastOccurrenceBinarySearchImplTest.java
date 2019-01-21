@@ -202,7 +202,7 @@
  *    limitations under the License.
  */
 
-package com.coffeebeans.search.binary.iterative;
+package com.coffeebeans.mycodeschool.search.binary.iterative;
 
 import static org.junit.Assert.assertEquals;
 

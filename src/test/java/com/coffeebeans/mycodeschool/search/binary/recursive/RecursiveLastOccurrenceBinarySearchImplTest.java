@@ -202,7 +202,7 @@
  *    limitations under the License.
  */
 
-package com.coffeebeans.search.binary.recursive;
+package com.coffeebeans.mycodeschool.search.binary.recursive;
 
 import static org.junit.Assert.assertEquals;
 
@@ -213,83 +213,80 @@ import org.junit.Test;
  * @author MohamedHamtou
  */
 
-public class RecursiveOccurrencesCountImplImplTest {
-    private RecursiveOccurrencesCountImpl recursiveOccurrencesCountImpl;
+public class RecursiveLastOccurrenceBinarySearchImplTest {
+    private RecursiveLastOccurrenceBinarySearchImpl lastOccurrenceRecursiveBinarySearch;
 
     @Before
     public void setup() {
-        recursiveOccurrencesCountImpl = new RecursiveOccurrencesCountImpl();
+        lastOccurrenceRecursiveBinarySearch = new RecursiveLastOccurrenceBinarySearchImpl();
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(5, recursiveOccurrencesCountImpl.count(5, input));
+    public void should_return_position_when_size_is_odd_and_first_occurrence_of_required_object_at_the_right_part_of_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 13, 13, 47, 63, 81, 97};
+
+        assertEquals(4, lastOccurrenceRecursiveBinarySearch.search(13, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_side_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(2, recursiveOccurrencesCountImpl.count(3, input));
+    public void should_return_position_when_size_is_odd_and_required_object_at_middle_of_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81, 97};
+
+        assertEquals(4, lastOccurrenceRecursiveBinarySearch.search(36, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_left_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(2, recursiveOccurrencesCountImpl.count(9, input));
+    public void should_return_position_when_size_is_odd_and_required_object_less_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81, 97};
+        assertEquals(2, lastOccurrenceRecursiveBinarySearch.search(13, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_size_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(1, recursiveOccurrencesCountImpl.count(1, input));
+    public void should_return_position_when_size_is_odd_and_required_object_larger_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81, 97};
+
+        assertEquals(8, lastOccurrenceRecursiveBinarySearch.search(97, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_left_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(1, recursiveOccurrencesCountImpl.count(12, input));
+    public void should_return_position_when_size_is_even_and_first_occurrence_of_required_object_at_the_right_part_of_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 13, 13, 47, 63, 81};
+
+        assertEquals(4, lastOccurrenceRecursiveBinarySearch.search(13, input));
     }
 
     @Test
-    public void should_return_negative_one_when_object_does_not_exist_in_odd_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11, 12};
-        assertEquals(0, recursiveOccurrencesCountImpl.count(6, input));
+    public void should_return_position_when_size_is_even_and_required_object_at_middle_of_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(3, lastOccurrenceRecursiveBinarySearch.search(21, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(5, recursiveOccurrencesCountImpl.count(5, input));
+    public void should_return_position_when_size_is_even_and_required_object_less_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(2, lastOccurrenceRecursiveBinarySearch.search(13, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_side_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(2, recursiveOccurrencesCountImpl.count(3, input));
+    public void should_return_position_when_size_is_even_and_required_object_larger_that_value_at_middle() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(7, lastOccurrenceRecursiveBinarySearch.search(81, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_multiple_times_on_right_left_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(2, recursiveOccurrencesCountImpl.count(9, input));
+    public void should_return_negative_one_when_size_is_odd_and_required_object_not_in_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 21, 36, 47, 63, 81};
+
+        assertEquals(-1, lastOccurrenceRecursiveBinarySearch.search(90, input));
     }
 
     @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_size_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(1, recursiveOccurrencesCountImpl.count(1, input));
-    }
+    public void should_return_negative_one_when_size_is_even_and_required_object_not_in_list() {
+        final Integer[] input = new Integer[]{2, 6, 13, 13, 13, 47, 63, 81, 97};
 
-    @Test
-    public void should_find_the_correct_count_when_object_exists_only_once_on_right_left_in_odd_even_search_space(){
-        final Integer[] input = new Integer[]{1, 2, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(1, recursiveOccurrencesCountImpl.count(11, input));
-    }
-
-    @Test
-    public void should_return_negative_one_when_object_does_not_exist_in_even_size_search_space(){
-        final Integer[] input = new Integer[]{1, 1, 3, 3, 5, 5, 5, 5, 5, 9, 9, 11};
-        assertEquals(0, recursiveOccurrencesCountImpl.count(6, input));
+        assertEquals(-1, lastOccurrenceRecursiveBinarySearch.search(90, input));
     }
 }

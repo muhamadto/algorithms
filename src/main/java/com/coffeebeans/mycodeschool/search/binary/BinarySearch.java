@@ -203,18 +203,12 @@
  *    limitations under the License.
  */
 
-package com.coffeebeans.search.binary.recursive;
-
-import com.coffeebeans.search.binary.OccurrencesCount;
+package com.coffeebeans.mycodeschool.search.binary;
 
 /**
  * @author MohamedHamtou
  */
 
-class RecursiveOccurrencesCountImpl<T extends Comparable<T>> extends OccurrencesCount<T> {
-
-     RecursiveOccurrencesCountImpl(){
-        this.firstOccurrenceBinarySearch = new RecursiveFirstOccurrenceBinarySearchImpl<>();
-        this.lastOccurrenceBinarySearch = new RecursiveLastOccurrenceBinarySearchImpl<>();
-    }
+public interface BinarySearch<T> {
+    int search(final T t, final T[] values);
 }

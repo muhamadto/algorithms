@@ -235,11 +235,11 @@ class IterativeCircularArrayRotationCounter<T extends Comparable<T>> {
 
             if (values[mid].compareTo(values[start]) >= 0) {
                 // reducing search space
-                // case 3, pivot is greater than element at start , so the left part is sorted and does not contain the pivot, remove left part
+                // case 3, pivot is greater than element at start , so the left part is sorted, remove left part
                 start = mid + 1;
             } else if (values[mid].compareTo(values[end]) <= 0) {
                 // reducing search space
-                // case 4, pivot is less than element at end , so the right part is sorted and does not contain the pivot, remove right part
+                // case 4, pivot is less than element at end , so the right part is sorted, remove right part
                 end = mid - 1;
             }
         }

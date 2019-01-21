@@ -234,15 +234,14 @@ class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
             return mid;
         }
 
-
         // reducing search space
-        // case 3, pivot is greater than element at start , so the left part is sorted and does not contain the pivot, remove left part
+        // case 3, pivot is greater than element at start, so the left part is sorted, remove left part
         if (values[mid].compareTo(values[start]) >= 0) {
             return doFindRotationCount(values, mid + 1, end);
         }
 
         // reducing search space
-        // case 4, pivot is less than element at end , so the right part is sorted and does not contain the pivot, remove right part
+        // case 4, pivot is less than element at end , so the right part is sorted, remove right part
         if (values[mid].compareTo(values[end]) <= 0) {
             return doFindRotationCount(values, start, mid - 1);
         }

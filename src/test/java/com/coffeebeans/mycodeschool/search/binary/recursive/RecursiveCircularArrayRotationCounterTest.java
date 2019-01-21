@@ -1,4 +1,3 @@
-
 /**
  *                                  Apache License
  *                            Version 2.0, January 2004
@@ -205,16 +204,37 @@
 
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import com.coffeebeans.mycodeschool.search.binary.OccurrencesCount;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author MohamedHamtou
  */
+public class RecursiveCircularArrayRotationCounterTest {
+    private RecursiveCircularArrayRotationCounter<Integer> recursiveCircularArrayRotationCounter;
 
-class RecursiveOccurrencesCountImpl<T extends Comparable<T>> extends OccurrencesCount<T> {
+    @Before
+    public void setup() {
+        recursiveCircularArrayRotationCounter = new RecursiveCircularArrayRotationCounter<>();
+    }
 
-     RecursiveOccurrencesCountImpl(){
-        this.firstOccurrenceBinarySearch = new RecursiveFirstOccurrenceBinarySearchImpl<>();
-        this.lastOccurrenceBinarySearch = new RecursiveLastOccurrenceBinarySearchImpl<>();
+    @Test
+    public void should_return_correct_count_when_array_is_rotated() {
+        final Integer[] input = new Integer[]{11, 12, 15, 18, 2,5, 6, 8};
+        assertEquals(4, recursiveCircularArrayRotationCounter.findRotationCount(input));
+    }
+
+    @Test
+    public void should_return_correct_count_when_array_is_fully_rotated() {
+        final Integer[] input = new Integer[]{5, 6, 8, 11, 12, 15, 18, 2};
+        assertEquals(7, recursiveCircularArrayRotationCounter.findRotationCount(input));
+    }
+
+    @Test
+    public void should_return_zero_when_array_is_not_rotated() {
+        final Integer[] input = new Integer[]{ 2,5, 6, 8, 11, 12, 15, 18};
+        assertEquals(0, recursiveCircularArrayRotationCounter.findRotationCount(input));
     }
 }

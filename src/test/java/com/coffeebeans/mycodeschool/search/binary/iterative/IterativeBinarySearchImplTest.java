@@ -204,10 +204,10 @@
 
 package com.coffeebeans.mycodeschool.search.binary.iterative;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author MohamedHamtou
@@ -215,11 +215,11 @@ import org.junit.Test;
 
 public class IterativeBinarySearchImplTest {
 
-    private IterativeBinarySearchImpl iterativeBinarySearch;
+    private IterativeBinarySearchImpl<Integer> iterativeBinarySearch;
 
     @Before
     public void setup() {
-        iterativeBinarySearch = new IterativeBinarySearchImpl();
+        iterativeBinarySearch = new IterativeBinarySearchImpl<>();
     }
 
     @Test

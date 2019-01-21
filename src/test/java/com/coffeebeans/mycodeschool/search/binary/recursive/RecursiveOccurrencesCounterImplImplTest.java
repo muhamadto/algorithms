@@ -204,8 +204,6 @@
 
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -214,12 +212,12 @@ import org.junit.Test;
  * @author MohamedHamtou
  */
 
-public class RecursiveOccurrencesCountImplImplTest {
-    private RecursiveOccurrencesCountImpl recursiveOccurrencesCountImpl;
+public class RecursiveOccurrencesCounterImplImplTest {
+    private RecursiveOccurrencesCounterImpl<Integer>  recursiveOccurrencesCountImpl;
 
     @Before
     public void setup() {
-        recursiveOccurrencesCountImpl = new RecursiveOccurrencesCountImpl();
+        recursiveOccurrencesCountImpl = new RecursiveOccurrencesCounterImpl<>();
     }
 
     @Test

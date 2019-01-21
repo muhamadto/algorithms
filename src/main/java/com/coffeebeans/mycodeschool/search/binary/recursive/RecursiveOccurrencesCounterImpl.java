@@ -203,19 +203,18 @@
  *    limitations under the License.
  */
 
-package com.coffeebeans.mycodeschool.search.binary.iterative;
+package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import com.coffeebeans.mycodeschool.search.binary.OccurrencesCount;
+import com.coffeebeans.mycodeschool.search.binary.OccurrencesCounter;
 
 /**
  * @author MohamedHamtou
  */
 
-class IterativeOccurrencesCountImpl<T extends Comparable<T>> extends OccurrencesCount<T> {
+class RecursiveOccurrencesCounterImpl<T extends Comparable<T>> extends OccurrencesCounter<T> {
 
-    IterativeOccurrencesCountImpl() {
-        this.firstOccurrenceBinarySearch = new IterativeFirstOccurrenceBinarySearchImpl<>();
-        this.lastOccurrenceBinarySearch = new IterativeLastOccurrenceBinarySearchImpl<>();
+     RecursiveOccurrencesCounterImpl(){
+        this.firstOccurrenceBinarySearch = new RecursiveFirstOccurrenceBinarySearchImpl<>();
+        this.lastOccurrenceBinarySearch = new RecursiveLastOccurrenceBinarySearchImpl<>();
     }
-
 }

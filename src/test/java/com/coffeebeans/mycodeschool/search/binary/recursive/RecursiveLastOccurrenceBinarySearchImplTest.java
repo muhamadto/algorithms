@@ -204,21 +204,21 @@
 
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author MohamedHamtou
  */
 
 public class RecursiveLastOccurrenceBinarySearchImplTest {
-    private RecursiveLastOccurrenceBinarySearchImpl lastOccurrenceRecursiveBinarySearch;
+    private RecursiveLastOccurrenceBinarySearchImpl<Integer>  lastOccurrenceRecursiveBinarySearch;
 
     @Before
     public void setup() {
-        lastOccurrenceRecursiveBinarySearch = new RecursiveLastOccurrenceBinarySearchImpl();
+        lastOccurrenceRecursiveBinarySearch = new RecursiveLastOccurrenceBinarySearchImpl<>();
     }
 
     @Test

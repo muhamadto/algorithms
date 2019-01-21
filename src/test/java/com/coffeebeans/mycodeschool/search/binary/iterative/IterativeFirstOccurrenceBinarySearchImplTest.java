@@ -204,21 +204,21 @@
 
 package com.coffeebeans.mycodeschool.search.binary.iterative;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author MohamedHamtou
  */
 
 public class IterativeFirstOccurrenceBinarySearchImplTest {
-    private IterativeFirstOccurrenceBinarySearchImpl firstOccurrenceIterativeBinarySearch;
+    private IterativeFirstOccurrenceBinarySearchImpl<Integer> firstOccurrenceIterativeBinarySearch;
 
     @Before
     public void setup() {
-        firstOccurrenceIterativeBinarySearch = new IterativeFirstOccurrenceBinarySearchImpl();
+        firstOccurrenceIterativeBinarySearch = new IterativeFirstOccurrenceBinarySearchImpl<>();
     }
 
     @Test

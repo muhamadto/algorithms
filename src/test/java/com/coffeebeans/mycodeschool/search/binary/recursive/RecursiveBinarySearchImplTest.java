@@ -204,21 +204,21 @@
 
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author MohamedHamtou
  */
 
 public class RecursiveBinarySearchImplTest {
-    private RecursiveBinarySearchImpl recursiveBinarySearch;
+    private RecursiveBinarySearchImpl<Integer> recursiveBinarySearch;
 
     @Before
     public void setup() {
-        recursiveBinarySearch = new RecursiveBinarySearchImpl();
+        recursiveBinarySearch = new RecursiveBinarySearchImpl<>();
     }
 
     @Test

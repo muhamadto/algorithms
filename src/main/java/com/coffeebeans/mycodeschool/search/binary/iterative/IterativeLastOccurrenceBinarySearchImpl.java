@@ -224,8 +224,7 @@ class IterativeLastOccurrenceBinarySearchImpl<T extends Comparable <T>> implemen
     int end = values.length - 1;
 
     while (start <= end) {
-      int mid = start + (end - start)
-          / 2; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
+      int mid = start + ((end - start) / 2); // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
       if (t.compareTo(values[mid]) == 0) {
         retval = mid;
 

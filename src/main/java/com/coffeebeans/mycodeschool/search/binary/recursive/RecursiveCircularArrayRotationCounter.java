@@ -1,4 +1,3 @@
-
 /**
  * Apache License
  * Version 2.0, January 2004
@@ -218,10 +217,10 @@ class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
         int start = 0;
         int end = arrayLength - 1;
 
-       return doFindRotationCount(values, start, end);
+        return doFindRotationCount(values, start, end);
     }
 
-   private int doFindRotationCount(final T[] values, final int start, final int end) {
+    private int doFindRotationCount(final T[] values, final int start, final int end) {
         int arrayLength = values.length;
 
         // case 1, already sorted
@@ -229,7 +228,7 @@ class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
             return start;
         }
 
-       int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
+        int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
 
         // case 2, mid is the pivot. Pivot has a property that it's less than the elements before and after it.
         int next = (mid + 1) % arrayLength; // this will result in 0 if mid is the last index (e.g. mid = 6 and arrayLength = 7, then next = 7 % 7 = 0)
@@ -242,16 +241,16 @@ class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
 
         // reducing search space
         // case 3, pivot is greater than element at start , so the left part is sorted and does not contain the pivot, remove left part
-        if(values[mid].compareTo(values[start]) >= 0){
+        if (values[mid].compareTo(values[start]) >= 0) {
             return doFindRotationCount(values, mid + 1, end);
         }
 
-       // reducing search space
-       // case 4, pivot is less than element at end , so the right part is sorted and does not contain the pivot, remove right part
-        if(values[mid].compareTo(values[end]) <= 0){
+        // reducing search space
+        // case 4, pivot is less than element at end , so the right part is sorted and does not contain the pivot, remove right part
+        if (values[mid].compareTo(values[end]) <= 0) {
             return doFindRotationCount(values, start, mid - 1);
         }
 
-       return -1; //invalid value
+        return -1; //invalid value
     }
 }

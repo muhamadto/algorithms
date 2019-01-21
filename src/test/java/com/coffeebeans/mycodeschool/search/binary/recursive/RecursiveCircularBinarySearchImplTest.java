@@ -204,49 +204,49 @@
 
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author MohamedHamtou
  */
-class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
-    int findRotationCount(final T[] values) {
-        if (values == null) {
-            return 0;
-        }
+public class RecursiveCircularBinarySearchImplTest {
+    private RecursiveCircularBinarySearchImpl<Integer> recursiveCircularBinarySearch;
 
-        return doFindRotationCount(values, 0, values.length - 1);
+    @Before
+    public void setup() {
+        recursiveCircularBinarySearch = new RecursiveCircularBinarySearchImpl<>();
     }
 
-    private int doFindRotationCount(final T[] values, final int start, final int end) {
-        int arrayLength = values.length;
+    @Test
+    public void should_return_correct_position_when_required_object_on_left_half() {
+        final Integer[] input = new Integer[]{12, 14, 18, 21, 3, 6, 8, 9};
+        assertEquals(1, recursiveCircularBinarySearch.search(14, input));
+    }
 
-        // case 1, already sorted
-        if (values[start].compareTo(values[end]) < 0) {
-            return start;
-        }
+    @Test
+    public void should_return_correct_position_when_required_object_on_right_half() {
+        final Integer[] input = new Integer[]{14, 18, 21, 3, 6, 8, 9, 12};
+        assertEquals(6, recursiveCircularBinarySearch.search(9, input));
+    }
 
-        int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
+    @Test
+    public void should_return_correct_position_when_array_is_sorted() {
+        final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
+        assertEquals(5, recursiveCircularBinarySearch.search(6, input));
+    }
 
-        // case 2, mid is the pivot. Pivot has a property that it's less than the elements before and after it.
-        int next = (mid + 1) % arrayLength; // this will result in 0 if mid is the last index (e.g. mid = 6 and arrayLength = 7, then next = 7 % 7 = 0)
-        int previous = (mid - 1 + arrayLength) % arrayLength; // (mid - 1 + arrayLength) to avoid negative numbers, think of previous = 0 what will happen if we calculate (0 - 1)
+    @Test
+    public void should_return_negative_one_when_object_does_not_exist() {
+        final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
+        assertEquals(-1, recursiveCircularBinarySearch.search(9, input));
+    }
 
-        if (values[mid].compareTo(values[next]) < 0 && values[mid].compareTo(values[previous]) < 0) {
-            return mid;
-        }
-
-
-        // reducing search space
-        // case 3, pivot is greater than element at start , so the left part is sorted and does not contain the pivot, remove left part
-        if (values[mid].compareTo(values[start]) >= 0) {
-            return doFindRotationCount(values, mid + 1, end);
-        }
-
-        // reducing search space
-        // case 4, pivot is less than element at end , so the right part is sorted and does not contain the pivot, remove right part
-        if (values[mid].compareTo(values[end]) <= 0) {
-            return doFindRotationCount(values, start, mid - 1);
-        }
-
-        return -1; //invalid value
+    @Test
+    public void should_return_correct_position_when_required_object_in_the_middle() {
+        final Integer[] input = new Integer[]{12, 14, 18, 21, 3, 6, 8, 9};
+        assertEquals(3, recursiveCircularBinarySearch.search(21, input));
     }
 }

@@ -204,49 +204,44 @@
 
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
+import com.coffeebeans.mycodeschool.search.binary.BinarySearch;
+
 /**
  * @author MohamedHamtou
  */
-class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
-    int findRotationCount(final T[] values) {
-        if (values == null) {
-            return 0;
+class RecursiveCircularBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {
+
+    @Override
+    public int search(T t, T[] values) {
+        if (values == null || t == null) {
+            return -1;
         }
 
-        return doFindRotationCount(values, 0, values.length - 1);
+        return doSearch(t, values, 0, values.length - 1);
     }
 
-    private int doFindRotationCount(final T[] values, final int start, final int end) {
-        int arrayLength = values.length;
-
-        // case 1, already sorted
-        if (values[start].compareTo(values[end]) < 0) {
-            return start;
+    private int doSearch(final T t, final T[] values, final int start, final int end) {
+        if (start > end) {
+            return -1; //invalid value
         }
 
-        int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
-
-        // case 2, mid is the pivot. Pivot has a property that it's less than the elements before and after it.
-        int next = (mid + 1) % arrayLength; // this will result in 0 if mid is the last index (e.g. mid = 6 and arrayLength = 7, then next = 7 % 7 = 0)
-        int previous = (mid - 1 + arrayLength) % arrayLength; // (mid - 1 + arrayLength) to avoid negative numbers, think of previous = 0 what will happen if we calculate (0 - 1)
-
-        if (values[mid].compareTo(values[next]) < 0 && values[mid].compareTo(values[previous]) < 0) {
+        int mid = start + ((end - start) / 2); // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE
+        if (t.compareTo(values[mid]) == 0) {
             return mid;
+        } else if (values[start].compareTo(values[mid]) <= 0) { // case 2  left half is sorted
+            if (t.compareTo(values[start]) >= 0 && t.compareTo(values[mid]) < 0) {
+                return doSearch(t, values, start, mid - 1); // searching in left half
+            } else {
+                return doSearch(t, values, mid + 1, end); // searching in right half
+            }
+        } else { // case 3  right half is sorted
+            if (t.compareTo(values[mid]) > 0 && t.compareTo(values[end]) <= 0) {
+                return doSearch(t, values, mid + 1, end); // searching in right half
+            } else {
+                return doSearch(t, values, start, mid - 1); // searching in left half
+            }
         }
-
-
-        // reducing search space
-        // case 3, pivot is greater than element at start , so the left part is sorted and does not contain the pivot, remove left part
-        if (values[mid].compareTo(values[start]) >= 0) {
-            return doFindRotationCount(values, mid + 1, end);
-        }
-
-        // reducing search space
-        // case 4, pivot is less than element at end , so the right part is sorted and does not contain the pivot, remove right part
-        if (values[mid].compareTo(values[end]) <= 0) {
-            return doFindRotationCount(values, start, mid - 1);
-        }
-
-        return -1; //invalid value
     }
 }
+
+

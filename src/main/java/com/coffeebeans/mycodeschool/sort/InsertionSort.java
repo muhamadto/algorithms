@@ -204,82 +204,44 @@
 
 package com.coffeebeans.mycodeschool.sort;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-
 /**
+ * More efficient than Selection and Bubble sort
+ * <p>
+ * Characteristics:
+ * <ul>
+ * <li>Time Complexity O(n^2). SLOW</li>
+ * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
+ * <li>Stable</li>
+ * <li>Internal</li>
+ * <li>Non-recursive</li>
+ * </ul>
+ * <p>
+ * This algorithm works by moving values from right (unsorted part) to left (sorted part)
+ * ------------------------------
+ * | Sorted      | Unsorted     |
+ * |           7 |<--[5],4,2,3,1|
+ * |         5,7 |<--[4],2,3,1  |
+ * |       4,5,7 |<--[2],3,1    |
+ * |     2,4,5,7 |<--[3],1      |
+ * |   2,3,4,5,7 |<--[1]        |
+ * | 1,2,3,4,5,7 |              |
+ * ------------------------------
+ *
  * @author MohamedHamtou
  */
-public class SelectionSortTest {
+public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
-    private SelectionSort selectionSort;
+    @Override
+    public void sort(final T[] array, final int fromIndex, final int toIndex) {
+        for (int i = fromIndex + 1; i <= toIndex; i++) {
+            T key = array[i]; // 5, 4, 2, 3, 1
 
-    @Before
-    public void setup() {
-        selectionSort = new SelectionSort();
+            int j = i;
+            while (j > fromIndex && array[j - 1].compareTo(key) > 0) {
+                array[j] = array[j - 1];
+                j--;
+            }
+            array[j] = key;
+        }
     }
-
-    @Test
-    public void should_sort_unsorted_array() {
-        final Integer[] input = new Integer[]{2, 7, 4, 1, 5, 3};
-
-        selectionSort.sort(input, 0, input.length - 1);
-
-        assertThat(input)
-                .isSorted();
-    }
-
-    @Test
-    public void should_sort_reversed_array() {
-        final Integer[] input = new Integer[]{7, 5, 4, 3, 2, 1};
-
-        selectionSort.sort(input, 0, input.length - 1);
-
-        assertThat(input)
-                .isSorted();
-    }
-
-    @Test
-    public void should_not_shuffle_sorted_array() {
-        final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
-
-        selectionSort.sort(input, 0, input.length - 1);
-
-        assertThat(input)
-                .isSorted();
-    }
-
-    @Test
-    public void should_sort_unsorted_array_with_stable_implementation() {
-        final Integer[] input = new Integer[]{2, 7, 4, 1, 5, 3};
-
-        selectionSort.stableSort(input, 0, input.length - 1);
-
-        assertThat(input)
-                .isSorted();
-    }
-
-    @Test
-    public void should_sort_reversed_array_stable_implementation() {
-        final Integer[] input = new Integer[]{7, 5, 4, 3, 2, 1};
-
-        selectionSort.stableSort(input, 0, input.length - 1);
-
-        assertThat(input)
-                .isSorted();
-    }
-
-    @Test
-    public void should_not_shuffle_sorted_array_stable_implementation() {
-        final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
-
-        selectionSort.stableSort(input, 0, input.length - 1);
-
-        assertThat(input)
-                .isSorted();
-    }
-
 }

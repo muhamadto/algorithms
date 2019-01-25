@@ -205,17 +205,18 @@
 package com.coffeebeans.mycodeschool.sort;
 
 /**
- * More efficient than Bubble sort
+ *  More efficient than Bubble sort
+ *  <p>
+ *      Characteristics:
+ *      <ul>
+ *          <li>Time Complexity O(n^2). SLOW</li>
+ *          <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
+ *          <li>Stability: there are two implementation stable and unstable</li>
+ *          <li>Internal</li>
+ *          <li>Non-recursive</li>
+ *      </ul>
+ *  </p>
  *
- * Characteristics:
- * <ul>
- * <li>Time Complexity O(n^2). SLOW</li>
- * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Stability: there are two implementation stable and unstable</li>
- * <li>Internal</li>
- * <li>Non-recursive</li>
- *
- * </ul>
  *
  * @author MohamedHamtou
  */

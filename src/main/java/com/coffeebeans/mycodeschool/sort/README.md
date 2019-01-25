@@ -1,4 +1,4 @@
-##Sorting
+## Sorting
 
 Characteristics:
 1. Time Complexity

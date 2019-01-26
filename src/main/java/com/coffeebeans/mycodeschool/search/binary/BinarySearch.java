@@ -205,7 +205,7 @@
 package com.coffeebeans.mycodeschool.search.binary;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 public interface BinarySearch<T> {

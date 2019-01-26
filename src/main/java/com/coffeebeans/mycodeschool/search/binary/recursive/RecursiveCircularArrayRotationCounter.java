@@ -205,7 +205,7 @@
 package com.coffeebeans.mycodeschool.search.binary.recursive;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
     int findRotationCount(final T[] values) {

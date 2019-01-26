@@ -207,7 +207,7 @@ package com.coffeebeans.mycodeschool.search.binary.recursive;
 import com.coffeebeans.mycodeschool.search.binary.BinarySearch;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 class RecursiveBinarySearchImpl<T extends Comparable<T>> implements BinarySearch<T> {

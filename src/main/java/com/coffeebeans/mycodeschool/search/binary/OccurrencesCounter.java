@@ -205,7 +205,7 @@
 package com.coffeebeans.mycodeschool.search.binary;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 public abstract class OccurrencesCounter<T extends Comparable<T>> {

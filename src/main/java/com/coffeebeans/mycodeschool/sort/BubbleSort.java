@@ -216,7 +216,7 @@ package com.coffeebeans.mycodeschool.sort;
  * </ul>
  * </p>
  *
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
 

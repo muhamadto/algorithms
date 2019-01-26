@@ -207,7 +207,7 @@ package com.coffeebeans.mycodeschool.search.binary.recursive;
 import com.coffeebeans.mycodeschool.search.binary.OccurrencesCounter;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 class RecursiveOccurrencesCounterImpl<T extends Comparable<T>> extends OccurrencesCounter<T> {

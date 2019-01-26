@@ -210,7 +210,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 public class IterativeCircularArrayRotationCounterTest {
     private IterativeCircularArrayRotationCounter<Integer> iterativeCircularArrayRotationCounter;

@@ -211,7 +211,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 public class QuickSortTest {
 

@@ -218,7 +218,7 @@ package com.coffeebeans.mycodeschool.sort;
  * </ul>
  * </p>
  *
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 public class MergeSort<T extends Comparable<T>> implements Sort<T> {

@@ -230,7 +230,7 @@ package com.coffeebeans.mycodeschool.sort;
  *  ------------------------------
  *  </pre>
  *
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 

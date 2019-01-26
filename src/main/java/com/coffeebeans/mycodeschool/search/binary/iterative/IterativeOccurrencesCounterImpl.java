@@ -207,7 +207,7 @@ package com.coffeebeans.mycodeschool.search.binary.iterative;
 import com.coffeebeans.mycodeschool.search.binary.OccurrencesCounter;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 class IterativeOccurrencesCounterImpl<T extends Comparable<T>> extends OccurrencesCounter<T> {

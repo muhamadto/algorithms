@@ -209,7 +209,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 public class IterativeOccurrencesCounterImplTest {

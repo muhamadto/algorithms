@@ -205,7 +205,7 @@
 package com.coffeebeans.mycodeschool.search.binary.iterative;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 class IterativeCircularArrayRotationCounter<T extends Comparable<T>> {
     int findRotationCount(final T[] values) {

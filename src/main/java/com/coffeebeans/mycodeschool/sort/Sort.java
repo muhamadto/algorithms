@@ -205,7 +205,7 @@
 package com.coffeebeans.mycodeschool.sort;
 
 /**
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 public interface Sort<T> {
 

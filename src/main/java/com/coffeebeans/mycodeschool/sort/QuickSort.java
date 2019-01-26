@@ -220,7 +220,7 @@ import java.security.SecureRandom;
  * </ul>
  * </p>
  *
- * @author MohamedHamtou
+ * @author Mohamed Hamtou
  */
 
 public class QuickSort<T extends Comparable<T>> implements Sort<T> {

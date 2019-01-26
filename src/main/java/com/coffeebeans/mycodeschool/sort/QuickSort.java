@@ -223,41 +223,41 @@ import java.security.SecureRandom;
  * @author MohamedHamtou
  */
 
-public class QuickSort<T extends Comparable <T>> implements Sort <T> {
+public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 
-  /**
-   * Introduction to Algorithms implementation. Does not make any assumption about starting index
-   */
-  public void sort(final T[] array, final int fromIndex, final int toIndex) {
-    if (fromIndex >= toIndex) {
-      return;
+    /**
+     * Introduction to Algorithms implementation. Does not make any assumption about starting index
+     */
+    public void sort(final T[] array, final int fromIndex, final int toIndex) {
+        if (fromIndex >= toIndex) {
+            return;
+        }
+
+        int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
+        sort(array, fromIndex, partitionIndex - 1);
+        sort(array, partitionIndex + 1, toIndex);
     }
 
-    int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
-    sort(array, fromIndex, partitionIndex - 1);
-      sort(array, partitionIndex + 1, toIndex);
-  }
+    private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
+        final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
 
-  private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
-    final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
+        swap(array, pivotIndex, toIndex);
 
-    swap(array, pivotIndex, toIndex);
-
-    return partition(array, fromIndex, toIndex);
-  }
-
-  private int partition(final T[] array, final int fromIndex, final int toIndex) {
-    final T pivot = array[toIndex];
-
-    int partitionIndex = fromIndex;
-    for (int i = fromIndex; i < toIndex; i++) {
-      if(array[i].compareTo(pivot) <= 0){
-        swap(array, i, partitionIndex);
-        partitionIndex++;
-      }
+        return partition(array, fromIndex, toIndex);
     }
-    swap(array, partitionIndex, toIndex);
 
-    return partitionIndex;
-  }
+    private int partition(final T[] array, final int fromIndex, final int toIndex) {
+        final T pivot = array[toIndex];
+
+        int partitionIndex = fromIndex;
+        for (int i = fromIndex; i < toIndex; i++) {
+            if (array[i].compareTo(pivot) <= 0) {
+                swap(array, i, partitionIndex);
+                partitionIndex++;
+            }
+        }
+        swap(array, partitionIndex, toIndex);
+
+        return partitionIndex;
+    }
 }

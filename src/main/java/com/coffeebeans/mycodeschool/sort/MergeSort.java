@@ -221,89 +221,89 @@ package com.coffeebeans.mycodeschool.sort;
  * @author MohamedHamtou
  */
 
-public class MergeSort<T extends Comparable <T>> implements Sort <T> {
+public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
-  /**
-   * Introduction to Algorithms implementation. Does not make any assumption about starting index
-   */
-  public void sort(final T[] array, final int fromIndex, final int toIndex) {
-    if (fromIndex >= toIndex) {
-      return;
+    /**
+     * Introduction to Algorithms implementation. Does not make any assumption about starting index
+     */
+    public void sort(final T[] array, final int fromIndex, final int toIndex) {
+        if (fromIndex >= toIndex) {
+            return;
+        }
+
+        int mid = fromIndex + (toIndex - fromIndex) / 2;
+        sort(array, fromIndex, mid);
+        sort(array, mid + 1, toIndex);
+        merge(array, fromIndex, mid, toIndex);
     }
 
-    int mid = fromIndex + (toIndex - fromIndex) / 2;
-    sort(array, fromIndex, mid);
-    sort(array, mid + 1, toIndex);
-    merge(array, fromIndex, mid, toIndex);
-  }
+    /**
+     * My code school implementation. Makes assumption that starting index is zero
+     */
+    public void sort(final T[] array) {
+        if (array.length < 2) {
+            return;
+        }
 
-  /**
-   * My code school implementation. Makes assumption that starting index is zero
-   */
-  public void sort(final T[] array) {
-    if (array.length < 2) {
-      return;
+        final int mid = array.length / 2;
+
+        final T[] left = (T[]) new Comparable[mid];
+        System.arraycopy(array, 0, left, 0, mid);
+
+        final T[] right = (T[]) new Comparable[array.length - mid];
+        System.arraycopy(array, mid, right, 0, array.length - mid);
+
+        sort(left);
+        sort(right);
+
+        merge(array, left, right, 0);
     }
 
-    final int mid = array.length / 2;
-
-    final T[] left = (T[]) new Comparable[mid];
-    System.arraycopy(array, 0, left, 0, mid);
-
-    final T[] right = (T[]) new Comparable[array.length - mid];
-    System.arraycopy(array, mid, right, 0, array.length - mid);
-
-    sort(left);
-    sort(right);
-
-    merge(array, left, right, 0);
-  }
-
-  private void merge(final T[] array, final int fromIndex, final int mid, final int toIndex) {
-    int leftLength = mid - fromIndex + 1;
-    final T[] left = (T[]) new Comparable[leftLength];
-    System.arraycopy(array, fromIndex, left, 0, leftLength);
+    private void merge(final T[] array, final int fromIndex, final int mid, final int toIndex) {
+        int leftLength = mid - fromIndex + 1;
+        final T[] left = (T[]) new Comparable[leftLength];
+        System.arraycopy(array, fromIndex, left, 0, leftLength);
 //        for (int i = 0; i < leftLength; i++) {
 //            left[i] = array[fromIndex + i];
 //        }
 
-    int rightLength = toIndex - mid;
-    final T[] right = (T[]) new Comparable[rightLength];
-    System.arraycopy(array, mid + 1, right, 0, rightLength);
+        int rightLength = toIndex - mid;
+        final T[] right = (T[]) new Comparable[rightLength];
+        System.arraycopy(array, mid + 1, right, 0, rightLength);
 //        for (int i = 0; i < rightLength; i++) {
 //            right[i] = array[mid + i + 1];
 //        }
 
-    merge(array, left, right, fromIndex);
+        merge(array, left, right, fromIndex);
 
-  }
-
-  private void merge(final T[] array, final T[] left, final T[] right, final int fromIndex) {
-    int leftIndex = 0;
-    int rightIndex = 0;
-    int resultIndex = fromIndex;
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex].compareTo(right[rightIndex]) <= 0) {
-        array[resultIndex] = left[leftIndex];
-        leftIndex++;
-      } else {
-        array[resultIndex] = right[rightIndex];
-        rightIndex++;
-      }
-
-      resultIndex++;
     }
 
-    while (leftIndex < left.length) {
-      array[resultIndex] = left[leftIndex];
-      leftIndex++;
-      resultIndex++;
-    }
+    private void merge(final T[] array, final T[] left, final T[] right, final int fromIndex) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int resultIndex = fromIndex;
+        while (leftIndex < left.length && rightIndex < right.length) {
+            if (left[leftIndex].compareTo(right[rightIndex]) <= 0) {
+                array[resultIndex] = left[leftIndex];
+                leftIndex++;
+            } else {
+                array[resultIndex] = right[rightIndex];
+                rightIndex++;
+            }
 
-    while (rightIndex < right.length) {
-      array[resultIndex] = right[rightIndex];
-      rightIndex++;
-      resultIndex++;
+            resultIndex++;
+        }
+
+        while (leftIndex < left.length) {
+            array[resultIndex] = left[leftIndex];
+            leftIndex++;
+            resultIndex++;
+        }
+
+        while (rightIndex < right.length) {
+            array[resultIndex] = right[rightIndex];
+            rightIndex++;
+            resultIndex++;
+        }
     }
-  }
 }

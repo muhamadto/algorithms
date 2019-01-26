@@ -216,7 +216,7 @@ package com.coffeebeans.mycodeschool.sort;
  * <li>Non-recursive</li>
  * </ul>
  * </p>
- *
+ * <p>
  * This algorithm works by moving values from right (unsorted part) to left (sorted part)
  * <pre>
  *  ------------------------------
@@ -232,19 +232,19 @@ package com.coffeebeans.mycodeschool.sort;
  *
  * @author MohamedHamtou
  */
-public class InsertionSort<T extends Comparable <T>> implements Sort <T> {
+public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
-  @Override
-  public void sort(final T[] array, final int fromIndex, final int toIndex) {
-    for (int i = fromIndex + 1; i <= toIndex; i++) {
-      T key = array[i]; // 5, 4, 2, 3, 1
+    @Override
+    public void sort(final T[] array, final int fromIndex, final int toIndex) {
+        for (int i = fromIndex + 1; i <= toIndex; i++) {
+            T key = array[i]; // 5, 4, 2, 3, 1
 
-      int j = i;
-      while (j > fromIndex && array[j - 1].compareTo(key) > 0) {
-        array[j] = array[j - 1];
-        j--;
-      }
-      array[j] = key;
+            int j = i;
+            while (j > fromIndex && array[j - 1].compareTo(key) > 0) {
+                array[j] = array[j - 1];
+                j--;
+            }
+            array[j] = key;
+        }
     }
-  }
 }

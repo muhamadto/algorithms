@@ -218,23 +218,23 @@ package com.coffeebeans.mycodeschool.sort;
  *
  * @author MohamedHamtou
  */
-public class BubbleSort<T extends Comparable <T>> implements Sort <T> {
+public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
 
-  @Override
-  public void sort(final T[] array, final int fromIndex, final int toIndex) {
-    for (int i = fromIndex; i < toIndex; i++) {
-      boolean isSorted = true;
-      for (int j = fromIndex; j < (toIndex - i); j++) {
-        if (array[j].compareTo(array[j + 1]) > 0) {
-          swap(array, j, j+1);
-          
-          isSorted = false;
+    @Override
+    public void sort(final T[] array, final int fromIndex, final int toIndex) {
+        for (int i = fromIndex; i < toIndex; i++) {
+            boolean isSorted = true;
+            for (int j = fromIndex; j < (toIndex - i); j++) {
+                if (array[j].compareTo(array[j + 1]) > 0) {
+                    swap(array, j, j + 1);
+
+                    isSorted = false;
+                }
+            }
+
+            if (isSorted) {
+                break;
+            }
         }
-      }
-
-      if (isSorted) {
-        break;
-      }
     }
-  }
 }

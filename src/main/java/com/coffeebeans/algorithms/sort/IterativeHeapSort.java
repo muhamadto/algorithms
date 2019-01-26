@@ -204,59 +204,33 @@
 
 package com.coffeebeans.algorithms.sort;
 
-import java.security.SecureRandom;
-
 /**
- * <p>
- * Characteristics:
- * <ul>
- * <li>Time Complexity O(n.log n) for average case, O(n^2) for worst case (sorted array). However, worst case can be avoided by randomising pivot selection</li>
- * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Non-stable</li>
- * <li>Internal</li>
- * <li>recursive</li>
- * <li>Divide and Conquer</li>
- * </ul>
- * </p>
- *
  * @author Mohamed Hamtou
  */
+public class IterativeHeapSort<T extends Comparable<T>> extends HeapSort<T> {
 
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
+    @Override
+    protected void heapify(final T[] array, final int currentIndex, final int toIndex) {
+        int parentIndex = currentIndex;
+        while (hasLeftChild(parentIndex, toIndex)) {
+            int largestChildIndex = parentIndex;
 
-    /**
-     * Introduction to Algorithms implementation. Does not make any assumption about starting index
-     */
-    public void sort(final T[] array, final int fromIndex, final int toIndex) {
-        if (fromIndex >= toIndex) {
-            return;
-        }
-
-        int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
-        sort(array, fromIndex, partitionIndex - 1);
-        sort(array, partitionIndex + 1, toIndex);
-    }
-
-    private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
-        final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
-
-        swap(array, pivotIndex, toIndex);
-
-        return partition(array, fromIndex, toIndex);
-    }
-
-    private int partition(final T[] array, final int fromIndex, final int toIndex) {
-        final T pivot = array[toIndex];
-
-        int partitionIndex = fromIndex;
-        for (int i = fromIndex; i < toIndex; i++) {
-            if (array[i].compareTo(pivot) <= 0) {
-                swap(array, i, partitionIndex);
-                partitionIndex++;
+            int leftChildIndex = getLeftChildIndex(parentIndex);
+            if (array[largestChildIndex].compareTo(array[leftChildIndex]) < 0) {
+                largestChildIndex = leftChildIndex;
             }
-        }
-        swap(array, partitionIndex, toIndex);
 
-        return partitionIndex;
+            int rightChildIndex = getRightChildIndex(parentIndex);
+            if (hasRightChild(parentIndex, toIndex) && array[leftChildIndex].compareTo(array[rightChildIndex]) < 0) {
+                largestChildIndex = rightChildIndex;
+            }
+
+            if (largestChildIndex == parentIndex) {
+                break;
+            }
+
+            swap(array, parentIndex, largestChildIndex);
+            parentIndex = largestChildIndex;
+        }
     }
 }

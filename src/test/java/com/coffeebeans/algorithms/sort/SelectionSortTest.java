@@ -215,18 +215,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class SelectionSortTest {
 
-    private SelectionSort selectionSort;
+    private SelectionSort sortAlgorithm;
 
     @Before
     public void setup() {
-        selectionSort = new SelectionSort();
+        sortAlgorithm = new SelectionSort();
     }
 
     @Test
     public void should_sort_unsorted_array() {
         final Integer[] input = new Integer[]{2, 7, 4, 1, 5, 3};
 
-        selectionSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -236,7 +236,7 @@ public class SelectionSortTest {
     public void should_sort_reversed_array() {
         final Integer[] input = new Integer[]{7, 5, 4, 3, 2, 1};
 
-        selectionSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -246,7 +246,7 @@ public class SelectionSortTest {
     public void should_not_shuffle_sorted_array() {
         final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
 
-        selectionSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -256,7 +256,7 @@ public class SelectionSortTest {
     public void should_sort_unsorted_array_with_stable_implementation() {
         final Integer[] input = new Integer[]{2, 7, 4, 1, 5, 3};
 
-        selectionSort.stableSort(input, 0, input.length - 1);
+        sortAlgorithm.stableSort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -266,7 +266,7 @@ public class SelectionSortTest {
     public void should_sort_reversed_array_stable_implementation() {
         final Integer[] input = new Integer[]{7, 5, 4, 3, 2, 1};
 
-        selectionSort.stableSort(input, 0, input.length - 1);
+        sortAlgorithm.stableSort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -276,7 +276,7 @@ public class SelectionSortTest {
     public void should_not_shuffle_sorted_array_stable_implementation() {
         final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
 
-        selectionSort.stableSort(input, 0, input.length - 1);
+        sortAlgorithm.stableSort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();

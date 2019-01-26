@@ -215,18 +215,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class InsertionSortTest {
 
-    private InsertionSort insertionSort;
+    private InsertionSort sortAlgorithm;
 
     @Before
     public void setup() {
-        insertionSort = new InsertionSort();
+        sortAlgorithm = new InsertionSort();
     }
 
     @Test
     public void should_sort_unsorted_array() {
         final Integer[] input = new Integer[]{2, 7, 4, 1, 5, 3};
 
-        insertionSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -236,7 +236,7 @@ public class InsertionSortTest {
     public void should_sort_reversed_array() {
         final Integer[] input = new Integer[]{7, 5, 4, 3, 2, 1};
 
-        insertionSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();
@@ -246,7 +246,7 @@ public class InsertionSortTest {
     public void should_not_shuffle_sorted_array() {
         final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
 
-        insertionSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
         assertThat(input)
                 .isSorted();

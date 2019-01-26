@@ -204,59 +204,44 @@
 
 package com.coffeebeans.algorithms.sort;
 
-import java.security.SecureRandom;
-
 /**
- * <p>
- * Characteristics:
- * <ul>
- * <li>Time Complexity O(n.log n) for average case, O(n^2) for worst case (sorted array). However, worst case can be avoided by randomising pivot selection</li>
- * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Non-stable</li>
- * <li>Internal</li>
- * <li>recursive</li>
- * <li>Divide and Conquer</li>
- * </ul>
- * </p>
- *
  * @author Mohamed Hamtou
  */
+public abstract class HeapSort<T extends Comparable<T>> implements Sort<T> {
+    protected abstract void heapify(final T[] array, final int currentIndex, final int toIndex);
 
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
-
-    /**
-     * Introduction to Algorithms implementation. Does not make any assumption about starting index
-     */
+    @Override
     public void sort(final T[] array, final int fromIndex, final int toIndex) {
-        if (fromIndex >= toIndex) {
-            return;
-        }
+        buildMaxHeap(array, fromIndex, toIndex);
 
-        int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
-        sort(array, fromIndex, partitionIndex - 1);
-        sort(array, partitionIndex + 1, toIndex);
+        for (int i = toIndex; i > fromIndex; i--) {
+            swap(array, fromIndex, i);
+            heapify(array, fromIndex, i - 1);
+        }
     }
 
-    private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
-        final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
+    protected void buildMaxHeap(final T[] array, final int fromIndex, final int toIndex) {
+        int length = toIndex - fromIndex + 1;
+        int lastNonLeafNodeIndex = (length / 2) - 1;
 
-        swap(array, pivotIndex, toIndex);
-
-        return partition(array, fromIndex, toIndex);
+        for (int i = lastNonLeafNodeIndex; i >= fromIndex; i--) {
+            heapify(array, i, toIndex);
+        }
     }
 
-    private int partition(final T[] array, final int fromIndex, final int toIndex) {
-        final T pivot = array[toIndex];
+    protected int getLeftChildIndex(final int index) {
+        return (2 * index) + 1;
+    }
 
-        int partitionIndex = fromIndex;
-        for (int i = fromIndex; i < toIndex; i++) {
-            if (array[i].compareTo(pivot) <= 0) {
-                swap(array, i, partitionIndex);
-                partitionIndex++;
-            }
-        }
-        swap(array, partitionIndex, toIndex);
+    protected int getRightChildIndex(final int index) {
+        return (2 * index) + 2;
+    }
 
-        return partitionIndex;
+    protected boolean hasLeftChild(final int currentIndex, final int toIndex) {
+        return getLeftChildIndex(currentIndex) <= toIndex;
+    }
+
+    protected boolean hasRightChild(final int currentIndex, final int toIndex) {
+        return getRightChildIndex(currentIndex) <= toIndex;
     }
 }

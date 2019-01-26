@@ -204,59 +204,35 @@
 
 package com.coffeebeans.algorithms.sort;
 
-import java.security.SecureRandom;
-
 /**
- * <p>
- * Characteristics:
- * <ul>
- * <li>Time Complexity O(n.log n) for average case, O(n^2) for worst case (sorted array). However, worst case can be avoided by randomising pivot selection</li>
- * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Non-stable</li>
- * <li>Internal</li>
- * <li>recursive</li>
- * <li>Divide and Conquer</li>
- * </ul>
- * </p>
- *
  * @author Mohamed Hamtou
  */
+public class RecursiveHeapSort<T extends Comparable<T>> extends HeapSort<T> {
 
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
-
-    /**
-     * Introduction to Algorithms implementation. Does not make any assumption about starting index
-     */
-    public void sort(final T[] array, final int fromIndex, final int toIndex) {
-        if (fromIndex >= toIndex) {
+    @Override
+    protected void heapify(final T[] array, final int currentIndex, final int toIndex) {
+        if (!hasLeftChild(currentIndex, toIndex)) {
             return;
         }
 
-        int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
-        sort(array, fromIndex, partitionIndex - 1);
-        sort(array, partitionIndex + 1, toIndex);
-    }
+        int largestChildIndex = currentIndex;
 
-    private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
-        final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
+        int leftChildIndex = getLeftChildIndex(currentIndex);
+        int rightChildIndex = getRightChildIndex(currentIndex);
 
-        swap(array, pivotIndex, toIndex);
-
-        return partition(array, fromIndex, toIndex);
-    }
-
-    private int partition(final T[] array, final int fromIndex, final int toIndex) {
-        final T pivot = array[toIndex];
-
-        int partitionIndex = fromIndex;
-        for (int i = fromIndex; i < toIndex; i++) {
-            if (array[i].compareTo(pivot) <= 0) {
-                swap(array, i, partitionIndex);
-                partitionIndex++;
-            }
+        if (array[currentIndex].compareTo(array[leftChildIndex]) < 0) {
+            largestChildIndex = leftChildIndex;
         }
-        swap(array, partitionIndex, toIndex);
 
-        return partitionIndex;
+        if (hasRightChild(currentIndex, toIndex) && array[leftChildIndex].compareTo(array[rightChildIndex]) < 0) {
+            largestChildIndex = rightChildIndex;
+        }
+
+        if (largestChildIndex == currentIndex) {
+            return;
+        }
+
+        swap(array, currentIndex, largestChildIndex);
+        heapify(array, largestChildIndex, toIndex);
     }
 }

@@ -204,59 +204,66 @@
 
 package com.coffeebeans.algorithms.sort;
 
-import java.security.SecureRandom;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 /**
- * <p>
- * Characteristics:
- * <ul>
- * <li>Time Complexity O(n.log n) for average case, O(n^2) for worst case (sorted array). However, worst case can be avoided by randomising pivot selection</li>
- * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Non-stable</li>
- * <li>Internal</li>
- * <li>recursive</li>
- * <li>Divide and Conquer</li>
- * </ul>
- * </p>
- *
  * @author Mohamed Hamtou
  */
+public class IterativeHeapSortTest {
 
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
+    private IterativeHeapSort sortAlgorithm;
 
-    /**
-     * Introduction to Algorithms implementation. Does not make any assumption about starting index
-     */
-    public void sort(final T[] array, final int fromIndex, final int toIndex) {
-        if (fromIndex >= toIndex) {
-            return;
-        }
-
-        int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
-        sort(array, fromIndex, partitionIndex - 1);
-        sort(array, partitionIndex + 1, toIndex);
+    @Before
+    public void setup() {
+        sortAlgorithm = new IterativeHeapSort();
     }
 
-    private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
-        final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
+    @Test
+    public void should_sort_unsorted_even_sized_array() {
+        final Integer[] input = new Integer[]{7, 4, 1, 5, 3, 9};
 
-        swap(array, pivotIndex, toIndex);
-
-        return partition(array, fromIndex, toIndex);
+        sortAlgorithm.sort(input, 0, input.length - 1);
+        assertThat(input)
+                .contains(new Integer[]{1, 3, 4, 5, 7, 9})
+                .hasSize(input.length)
+                .isSorted();
     }
 
-    private int partition(final T[] array, final int fromIndex, final int toIndex) {
-        final T pivot = array[toIndex];
+    @Test
+    public void should_sort_unsorted_odd_sized_array() {
+        final Integer[] input = new Integer[]{2, 4, 1, 6, 8, 5, 3, 7, 9};
 
-        int partitionIndex = fromIndex;
-        for (int i = fromIndex; i < toIndex; i++) {
-            if (array[i].compareTo(pivot) <= 0) {
-                swap(array, i, partitionIndex);
-                partitionIndex++;
-            }
-        }
-        swap(array, partitionIndex, toIndex);
+        sortAlgorithm.sort(input, 0, input.length - 1);
 
-        return partitionIndex;
+        assertThat(input)
+                .hasSize(input.length)
+                .isSorted();
+    }
+
+    @Test
+    public void should_sort_reversed_array() {
+        final Integer[] input = new Integer[]{9, 7, 5, 4, 3, 2, 1};
+
+        sortAlgorithm.sort(input, 0, input.length - 1);
+
+        assertThat(input)
+                .contains(new Integer[]{1, 2, 3, 4, 5, 7, 9})
+                .hasSize(input.length)
+                .isSorted();
+    }
+
+    @Test
+    public void should_not_shuffle_sorted_array() {
+        final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
+
+        sortAlgorithm.sort(input, 0, input.length - 1);
+        assertThat(input)
+                .contains(new Integer[]{1, 2, 3, 4, 5, 7})
+                .hasSize(input.length)
+                .isSorted();
     }
 }

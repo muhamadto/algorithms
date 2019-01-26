@@ -215,18 +215,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class QuickSortTest {
 
-    private QuickSort quickSort;
+    private QuickSort sortAlgorithm;
 
     @Before
     public void setup() {
-        quickSort = new QuickSort();
+        sortAlgorithm = new QuickSort();
     }
 
     @Test
     public void should_sort_unsorted_even_sized_array() {
         final Integer[] input = new Integer[]{7, 4, 1, 5, 3, 9};
 
-        quickSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
         assertThat(input)
                 .contains(new Integer[]{1, 3, 4, 5, 7, 9})
                 .hasSize(input.length)
@@ -237,7 +237,7 @@ public class QuickSortTest {
     public void should_sort_unsorted_odd_sized_array() {
         final Integer[] input = new Integer[]{2, 4, 1, 6, 8, 5, 3, 7, 9};
 
-        quickSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
         assertThat(input)
                 .hasSize(input.length)
                 .isSorted();
@@ -247,7 +247,7 @@ public class QuickSortTest {
     public void should_sort_reversed_array() {
         final Integer[] input = new Integer[]{9, 7, 5, 4, 3, 2, 1};
 
-        quickSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
         assertThat(input)
                 .contains(new Integer[]{1, 2, 3, 4, 5, 7, 9})
                 .hasSize(input.length)
@@ -258,7 +258,7 @@ public class QuickSortTest {
     public void should_not_shuffle_sorted_array() {
         final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
 
-        quickSort.sort(input, 0, input.length - 1);
+        sortAlgorithm.sort(input, 0, input.length - 1);
         assertThat(input)
                 .contains(new Integer[]{1, 2, 3, 4, 5, 7})
                 .hasSize(input.length)

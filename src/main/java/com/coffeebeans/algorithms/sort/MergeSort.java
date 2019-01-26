@@ -205,7 +205,6 @@
 package com.coffeebeans.algorithms.sort;
 
 /**
- * More efficient than Selection and Bubble sort
  * <p>
  * Characteristics:
  * <ul>

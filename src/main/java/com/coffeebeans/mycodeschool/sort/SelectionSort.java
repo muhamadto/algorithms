@@ -205,75 +205,64 @@
 package com.coffeebeans.mycodeschool.sort;
 
 /**
- *  More efficient than Bubble sort
- *  <p>
- *      Characteristics:
- *      <ul>
- *          <li>Time Complexity O(n^2). SLOW</li>
- *          <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- *          <li>Stability: there are two implementation stable and unstable</li>
- *          <li>Internal</li>
- *          <li>Non-recursive</li>
- *      </ul>
- *  </p>
- *
+ * More efficient than Bubble sort
+ * <p>
+ * Characteristics:
+ * <ul>
+ * <li>Time Complexity O(n^2). SLOW</li>
+ * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
+ * <li>Stability: there are stable and non-stable implementation</li>
+ * <li>Internal</li>
+ * <li>Non-recursive</li>
+ * </ul>
+ * </p>
  *
  * @author MohamedHamtou
  */
-public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
+public class SelectionSort<T extends Comparable <T>> implements Sort <T> {
 
-    /**
-     * Default Unstable implementation of selection sort, example [4 2 3 4 1]
-     *
-     * @param array
-     * @param fromIndex
-     * @param toIndex
-     */
-    @Override
-    public void sort(final T[] array, final int fromIndex, final int toIndex) {
-        for (int i = fromIndex; i < toIndex; i++) {
+  /**
+   * Default non-stable implementation of selection sort, example [4 2 3 4 1]
+   */
+  @Override
+  public void sort(final T[] array, final int fromIndex, final int toIndex) {
+    for (int i = fromIndex; i < toIndex; i++) {
 
-            //find index of smallest element
-            int minIndex = i;
-            for (int j = i + 1; j <= toIndex; j++) {
-                if (array[j].compareTo(array[minIndex]) < 0) {
-                    minIndex = j;
-                }
-            }
-
-            // swap
-            T temp = array[i];
-            array[i] = array[minIndex];
-            array[minIndex] = temp;
+      //find index of smallest element
+      int minIndex = i;
+      for (int j = i + 1; j <= toIndex; j++) {
+        if (array[j].compareTo(array[minIndex]) < 0) {
+          minIndex = j;
         }
+      }
+
+      // swap
+      swap(array, i, minIndex);
     }
+  }
 
-    /**
-     * Stable implementation of selection sort
-     *
-     * @param array
-     * @param fromIndex
-     * @param toIndex
-     */
-    public void stableSort(final T[] array, final int fromIndex, final int toIndex) {
-        for (int i = fromIndex; i < toIndex; i++) {
+  /**
+   * Stable implementation of selection sort
+   */
+  public void stableSort(final T[] array, final int fromIndex, final int toIndex) {
+    for (int i = fromIndex; i < toIndex; i++) {
 
-            //find index of smallest element
-            int minIndex = i;
-            for (int j = i + 1; j <= toIndex; j++) {
-                if (array[minIndex].compareTo(array[j]) > 0) {
-                    minIndex = j;
-                }
-            }
-
-            // Move minimum element at current i.
-            T temp = array[minIndex];
-            while (minIndex > i) {
-                array[minIndex] = array[minIndex - 1];
-                minIndex--;
-            }
-
-            array[i] = temp;
+      //find index of smallest element
+      int minIndex = i;
+      for (int j = i + 1; j <= toIndex; j++) {
+        if (array[minIndex].compareTo(array[j]) > 0) {
+          minIndex = j;
         }
+      }
+
+      // Move minimum element at current i.
+      T temp = array[minIndex];
+      while (minIndex > i) {
+        array[minIndex] = array[minIndex - 1];
+        minIndex--;
+      }
+
+      array[i] = temp;
     }
+  }
 }

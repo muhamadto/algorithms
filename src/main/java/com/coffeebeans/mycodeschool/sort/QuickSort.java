@@ -204,37 +204,60 @@
 
 package com.coffeebeans.mycodeschool.sort;
 
+import java.security.SecureRandom;
+
 /**
+ * More efficient than Selection and Bubble sort
  * <p>
  * Characteristics:
  * <ul>
- * <li>Time Complexity O(n^2) for average and worst case, O(n) for best case (sorted array). SLOW</li>
+ * <li>Time Complexity O(n.log n) for average case, O(n^2) for worst case (sorted array). However, worst case can be avoided by randomising pivot selection</li>
  * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Stable</li>
+ * <li>Non-stable</li>
  * <li>Internal</li>
- * <li>Non-recursive</li>
+ * <li>recursive</li>
+ * <li>Divide and Conquer</li>
  * </ul>
  * </p>
  *
  * @author MohamedHamtou
  */
-public class BubbleSort<T extends Comparable <T>> implements Sort <T> {
 
-  @Override
+public class QuickSort<T extends Comparable <T>> implements Sort <T> {
+
+  /**
+   * Introduction to Algorithms implementation. Does not make any assumption about starting index
+   */
   public void sort(final T[] array, final int fromIndex, final int toIndex) {
-    for (int i = fromIndex; i < toIndex; i++) {
-      boolean isSorted = true;
-      for (int j = fromIndex; j < (toIndex - i); j++) {
-        if (array[j].compareTo(array[j + 1]) > 0) {
-          swap(array, j, j+1);
-          
-          isSorted = false;
-        }
-      }
+    if (fromIndex >= toIndex) {
+      return;
+    }
 
-      if (isSorted) {
-        break;
+    int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
+    sort(array, fromIndex, partitionIndex - 1);
+    sort(array, partitionIndex - 1, toIndex);
+  }
+
+  private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {
+    final int pivotIndex = new SecureRandom().nextInt(toIndex - fromIndex + 1) + fromIndex;
+
+    swap(array, pivotIndex, toIndex);
+
+    return partition(array, fromIndex, toIndex);
+  }
+
+  private int partition(final T[] array, final int fromIndex, final int toIndex) {
+    final T pivot = array[toIndex];
+
+    int partitionIndex = fromIndex;
+    for (int i = fromIndex; i < toIndex; i++) {
+      if(array[i].compareTo(pivot) <= 0){
+        swap(array, i, partitionIndex);
+        partitionIndex++;
       }
     }
+    swap(array, partitionIndex, toIndex);
+
+    return partitionIndex;
   }
 }

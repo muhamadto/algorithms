@@ -208,5 +208,12 @@ package com.coffeebeans.mycodeschool.sort;
  * @author MohamedHamtou
  */
 public interface Sort<T> {
-    void sort(T[] array, int fromIndex, int toIndex);
+
+  void sort(T[] array, int fromIndex, int toIndex);
+
+  default void swap(final T[] array, final int index1, final int index2) {
+    final T temp = array[index2];
+    array[index2] = array[index1];
+    array[index1] = temp;
+  }
 }

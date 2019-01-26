@@ -204,37 +204,64 @@
 
 package com.coffeebeans.mycodeschool.sort;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
 /**
- * <p>
- * Characteristics:
- * <ul>
- * <li>Time Complexity O(n^2) for average and worst case, O(n) for best case (sorted array). SLOW</li>
- * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- * <li>Stable</li>
- * <li>Internal</li>
- * <li>Non-recursive</li>
- * </ul>
- * </p>
- *
  * @author MohamedHamtou
  */
-public class BubbleSort<T extends Comparable <T>> implements Sort <T> {
+public class QuickSortTest {
 
-  @Override
-  public void sort(final T[] array, final int fromIndex, final int toIndex) {
-    for (int i = fromIndex; i < toIndex; i++) {
-      boolean isSorted = true;
-      for (int j = fromIndex; j < (toIndex - i); j++) {
-        if (array[j].compareTo(array[j + 1]) > 0) {
-          swap(array, j, j+1);
-          
-          isSorted = false;
-        }
-      }
+    private QuickSort quickSort;
 
-      if (isSorted) {
-        break;
-      }
+    @Before
+    public void setup() {
+        quickSort = new QuickSort();
     }
-  }
+
+    @Test
+    public void should_sort_unsorted_even_sized_array() {
+        final Integer[] input = new Integer[]{7, 4, 1, 5, 3, 9};
+
+        quickSort.sort(input, 0, input.length - 1);
+        assertThat(input)
+                .contains(new Integer[]{1, 3, 4, 5, 7, 9})
+                .hasSize(input.length)
+                .isSorted();
+    }
+
+    @Test
+    public void should_sort_unsorted_odd_sized_array() {
+        final Integer[] input = new Integer[]{2, 4, 1, 6, 8, 5, 3, 7, 9};
+
+        quickSort.sort(input, 0, input.length - 1);
+        assertThat(input)
+                .hasSize(input.length)
+                .isSorted();
+    }
+
+    @Test
+    public void should_sort_reversed_array() {
+        final Integer[] input = new Integer[]{9, 7, 5, 4, 3, 2, 1};
+
+        quickSort.sort(input, 0, input.length - 1);
+        assertThat(input)
+                .contains(new Integer[]{1, 2, 3, 4, 5, 7, 9})
+                .hasSize(input.length)
+                .isSorted();
+    }
+
+    @Test
+    public void should_not_shuffle_sorted_array() {
+        final Integer[] input = new Integer[]{1, 2, 3, 4, 5, 7};
+
+        quickSort.sort(input, 0, input.length - 1);
+        assertThat(input)
+                .contains(new Integer[]{1, 2, 3, 4, 5, 7})
+                .hasSize(input.length)
+                .isSorted();
+    }
 }

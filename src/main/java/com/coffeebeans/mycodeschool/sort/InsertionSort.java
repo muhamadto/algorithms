@@ -207,18 +207,18 @@ package com.coffeebeans.mycodeschool.sort;
 /**
  * More efficient than Selection and Bubble sort
  * <p>
- *  Characteristics:
- *  <ul>
- *      <li>Time Complexity O(n^2). SLOW</li>
- *      <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
- *      <li>Stable</li>
- *      <li>Internal</li>
- *      <li>Non-recursive</li>
- *  </ul>
+ * Characteristics:
+ * <ul>
+ * <li>Time Complexity O(n^2). SLOW</li>
+ * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
+ * <li>Stable</li>
+ * <li>Internal</li>
+ * <li>Non-recursive</li>
+ * </ul>
  * </p>
  *
- *  This algorithm works by moving values from right (unsorted part) to left (sorted part)
- *  <pre>
+ * This algorithm works by moving values from right (unsorted part) to left (sorted part)
+ * <pre>
  *  ------------------------------
  *  | Sorted      | Unsorted     |
  *  |           7 |<--[5],4,2,3,1|
@@ -232,19 +232,19 @@ package com.coffeebeans.mycodeschool.sort;
  *
  * @author MohamedHamtou
  */
-public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
+public class InsertionSort<T extends Comparable <T>> implements Sort <T> {
 
-    @Override
-    public void sort(final T[] array, final int fromIndex, final int toIndex) {
-        for (int i = fromIndex + 1; i <= toIndex; i++) {
-            T key = array[i]; // 5, 4, 2, 3, 1
+  @Override
+  public void sort(final T[] array, final int fromIndex, final int toIndex) {
+    for (int i = fromIndex + 1; i <= toIndex; i++) {
+      T key = array[i]; // 5, 4, 2, 3, 1
 
-            int j = i;
-            while (j > fromIndex && array[j - 1].compareTo(key) > 0) {
-                array[j] = array[j - 1];
-                j--;
-            }
-            array[j] = key;
-        }
+      int j = i;
+      while (j > fromIndex && array[j - 1].compareTo(key) > 0) {
+        array[j] = array[j - 1];
+        j--;
+      }
+      array[j] = key;
     }
+  }
 }

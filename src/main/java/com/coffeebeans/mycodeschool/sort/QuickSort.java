@@ -235,7 +235,7 @@ public class QuickSort<T extends Comparable <T>> implements Sort <T> {
 
     int partitionIndex = randomisedPartition(array, fromIndex, toIndex);
     sort(array, fromIndex, partitionIndex - 1);
-    sort(array, partitionIndex - 1, toIndex);
+      sort(array, partitionIndex + 1, toIndex);
   }
 
   private int randomisedPartition(final T[] array, final int fromIndex, final int toIndex) {

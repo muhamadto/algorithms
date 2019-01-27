@@ -205,6 +205,17 @@
 package com.coffeebeans.algorithms.sort;
 
 /**
+ * <p>
+ * Characteristics:
+ * <ul>
+ * <li>Time Complexity O(n.log n)</li>
+ * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
+ * <li>Non-stable</li>
+ * <li>Internal</li>
+ * <li>Non-recursive</li>
+ * </ul>
+ * </p>
+ *
  * @author Mohamed Hamtou
  */
 public class IterativeHeapSort<T extends Comparable<T>> extends HeapSort<T> {

@@ -229,12 +229,12 @@ public class RecursiveHeapSort<T extends Comparable<T>> extends HeapSort<T> {
         int largestChildIndex = currentIndex;
 
         int leftChildIndex = getLeftChildIndex(currentIndex);
-        int rightChildIndex = getRightChildIndex(currentIndex);
 
         if (array[currentIndex].compareTo(array[leftChildIndex]) < 0) {
             largestChildIndex = leftChildIndex;
         }
 
+        int rightChildIndex = getRightChildIndex(currentIndex);
         if (hasRightChild(currentIndex, toIndex) && array[leftChildIndex].compareTo(array[rightChildIndex]) < 0) {
             largestChildIndex = rightChildIndex;
         }

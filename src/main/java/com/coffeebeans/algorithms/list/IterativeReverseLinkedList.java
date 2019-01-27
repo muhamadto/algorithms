@@ -205,6 +205,13 @@
 package com.coffeebeans.algorithms.list;
 
 /**
+ * <p>
+ * Characteristics:
+ * <ul>
+ * <li>Time Complexity O(n)</li>
+ * <li>Space Complexity, O(1) In-place, does not use auxiliary memory</li>
+ * </ul>
+ * </p>
  * @author Mohamed Hamtou
  */
 public class IterativeReverseLinkedList<E> extends LinkedList<E> {

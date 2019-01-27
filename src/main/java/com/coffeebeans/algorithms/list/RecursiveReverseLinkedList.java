@@ -205,8 +205,16 @@
 package com.coffeebeans.algorithms.list;
 
 /**
+ * <p>
+ * Characteristics:
+ * <ul>
+ * <li>Time Complexity O(n)</li>
+ * <li>Space Complexity, O(n) for implicit function call stack during recursion</li>
+ * </ul>
+ * </p>
  * @author Mohamed Hamtou
  */
+
 public class RecursiveReverseLinkedList<E> extends LinkedList<E> {
 
     public Node reverse(final Node head) {

@@ -221,7 +221,7 @@ class RecursiveCircularArrayRotationCounter<T extends Comparable<T>> {
 
         // case 1, already sorted
         if (values[start].compareTo(values[end]) < 0) {
-            return start;
+            return 0;
         }
 
         int mid = (start + end) >>> 1; // ((start + end) / 2) may produce overflow exception, example start = (Integer.MAX_VALUE - 9) and end = Integer.MAX_VALUE

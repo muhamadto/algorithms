@@ -232,7 +232,7 @@ public class IterativeHeapSort<T extends Comparable<T>> extends HeapSort<T> {
             }
 
             int rightChildIndex = getRightChildIndex(parentIndex);
-            if (hasRightChild(parentIndex, toIndex) && array[leftChildIndex].compareTo(array[rightChildIndex]) < 0) {
+            if (hasRightChild(parentIndex, toIndex) && array[largestChildIndex].compareTo(array[rightChildIndex]) < 0) {
                 largestChildIndex = rightChildIndex;
             }
 

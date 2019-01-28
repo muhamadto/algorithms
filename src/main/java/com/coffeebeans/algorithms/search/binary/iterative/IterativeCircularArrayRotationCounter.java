@@ -222,7 +222,7 @@ class IterativeCircularArrayRotationCounter<T extends Comparable<T>> {
 
             // case 1, already sorted
             if (values[start].compareTo(values[end]) < 0) {
-                return start;
+                return 0;
             }
 
             // case 2, mid is the pivot. Pivot has a property that it's less than the elements before and after it.
